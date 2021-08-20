@@ -1,0 +1,81 @@
+<div class="container" style="background-color: rgb(226, 246, 248);">
+
+        <div class= "header" style="background-color: rgb(238, 235, 243);">
+        <h1 style= "color: rgb(152, 74, 241);"  ><img src="assets\images\png.png" height="80px" width="100px" alt="logo" >She Boutique
+        <p style="color: rgb(152, 74, 241); font-size: 18px; font-weight: 700; float: right; margin-top: 40px; margin-right: 10px; ">welcome, <b style="color:rgb(75, 64, 238); float: right; font-size: 18px; font-weight: 700;">{{userName}}</b></p></h1>
+        
+        
+        
+        <button class = "btn btn-primary"  style="margin-left: 10px;"  (click)="home()">Home</button>
+        <!-- <button class = "btn btn-primary" (click)="login()">Login</button> -->
+        <button class = "btn btn-primary" (click)="cart()">Cart</button>
+        <button class = "btn btn-primary" (click)="logout()">Logout</button>
+        <button class = "btn btn-primary" (click)="getordersnew()">View OrderDetails</button>
+        <input [(ngModel)]="filterString" name="search" class="form-control"  list="browsers" type="text" style="display: flex; justify-content: flex-end; float: right; width: 300px; " placeholder="Search Product">
+            <datalist id="browsers">
+              <option *ngFor = "let product of products">{{product?.name}}</option> 
+            </datalist><br><br/>
+        <!-- <button class="btn btn-success ProductSearchBtn" (click)=" getAllProductsearch(product.category)"  type="button" style="font-size: 15px; float: right; font-weight: 700; margin-bottom: 10px; text-align: center; color:black; background-color:rgb(120, 178, 245);">Search</button>
+        <input  name="search" class="form-control" type="text" [(ngModel)]="product.category" style="display: flex; justify-content: flex-end; float: right; width: 300px;" placeholder="Search"><br/> -->
+        <!-- <div class="searchbar"> 
+            <input [(ngModel)]="filterString" name="search" class="form-control"  list="browsers" type="text" style="display: flex; justify-content: flex-end; float: right; width: 300px; " placeholder="Search Product">
+            <datalist id="browsers">
+              <option *ngFor = "let product of products">{{product?.name}}</option> 
+            </datalist>
+            </div>    -->
+        
+        <!-- <h3 style="color: rgb(102, 35, 179);"> This all are our products!</h3> -->
+    </div>
+            <table class="table table-striped" [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="5" class = "table table-striped table-bordered" style="font-size: 18px; font-weight: 500px; color: black;">
+              <thead>
+              <tr style = "background: rgb(128, 190, 240);">
+                  <th style="width: 20%">
+                    <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                  </th>
+                  <th style="width: 15%" style="height: 5%">
+                    
+                      <mfDefaultSorter by="description">Description</mfDefaultSorter>
+                  </th>
+                  <th style="width: 5%">
+                      <mfDefaultSorter by="price">Price</mfDefaultSorter>
+                  </th>
+                  <th style="width: 5%">
+                      <mfDefaultSorter by="quantity">Available Quantity</mfDefaultSorter>
+                </th>
+                  <th style="width: 10%" >
+                    <mfDefaultSorter by="image" >Image</mfDefaultSorter>
+                   </th>
+                  <th style="width: 10%" >
+                    <mfDefaultSorter>Add your Product</mfDefaultSorter>
+                  </th>
+                  
+              </tr>
+              </thead>
+              <tbody>
+        <!-- <tr *ngFor="let item of products |filter:filterString" > -->
+          <!-- <tr *ngFor="let item of products" *ngIf="((filterString != '') && (item?.name == filterString)) || (filterString == '')"> -->
+            <tr *ngFor="let item of getTableProducts(products)">     
+            <td>{{item?.name}}</td>
+                  <td>{{item?.description}}</td>
+                  <td>{{item?.price}}</td>
+                  <td>{{item?.quantity}}</td>
+                  
+                  <td><img style="display:block;" width="70%" height="100px" [src]="item?.image"></td>
+                  <td><button (click) = "addViewproduct(item.id)" *ngIf="item.quantity>=1" class = "btn btn-primary" style="font-size: 15px; font-weight: 700; margin-top: 10px; margin-left: 20px; border-color: rgb(253, 61, 54); text-align: center; color:black; background-color:rgb(120, 178, 245);" >Add Product</button>
+                  <button type="button" (click)="addViewProduct(item.id)" *ngIf="item.quantity==0" class = "btn btn-primary" style="font-size: 15px; font-weight: 700; margin-top: 10px; margin-left: 20px;  text-align: center; background-color: rgb(250, 120, 153); color: black;">Out of Stock</button></td>
+                    
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                  <td colspan="4">
+                      <mfBootstrapPaginator [rowsOnPageSet]="[5,8,25]"></mfBootstrapPaginator>
+                  </td>
+              </tr>
+              </tfoot>
+          
+        </table>
+    </div>
+        
+
+    

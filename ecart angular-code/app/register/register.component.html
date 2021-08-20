@@ -1,0 +1,61 @@
+<div class="container" style="background-color: rgb(248, 248, 248);" >
+    <h1 style= "color: rgba(9, 43, 238, 0.603);">Welcome to Ecart Shopping WebApp</h1>
+        <h3 style= "color: rgba(121, 26, 245, 0.603);">New ueser? Register yourself here!</h3><br>    
+   
+<form class="form-horizontal" [formGroup]="complexForm">
+     <input type="hidden" [(ngModel)] = "register.id" name="id" formControlName="id"/>
+    
+<div class="form-group">
+        <label class="control-label col-sm-2">Name</label>
+        <div class="col-sm-6">
+           <input type = "text" [(ngModel)] = "register.name" name="name" formControlName = "name" class="form-control" placeholder="Enter your Name"/>
+            <!-- <span *ngIf="complexForm.get('name')?.hasError('required')">Name field is required!</span> -->
+            <span *ngIf="complexForm.get('name')?.hasError('pattern')">Your name must be in A-Z or a-z format</span>
+        </div>    
+    </div>  
+<div class="form-group">
+            <label class="control-label col-sm-2">Address</label>
+            <div class="col-sm-6">
+                <input type = "text" [(ngModel)] = "register.address"  name="address" formControlName = "address" class="form-control" placeholder="Enter your Address"/>
+                <!-- <span *ngIf="complexForm.get('address')?.hasError('required')">Address field is required!</span> -->
+                <span *ngIf="complexForm.get('address')?.hasError('maxlength')">Your address length is not more then 200 letters!</span>     
+            </div>    
+            </div>
+<div class="form-group">
+            <label class="control-label col-sm-2">Email</label>
+            <div class="col-sm-6">
+                <input type = "text" [(ngModel)] = "register.email" name="email" formControlName = "email" class="form-control" placeholder="Enter your Email-Id"/>
+                <!-- <span *ngIf="complexForm.get('email')?.hasError('required')">Email-Id field is required!</span> -->
+                <!-- <span *ngIf="complexForm.get('email')?.hasError('email')">Your email-id!</span> -->
+                <span *ngIf="complexForm.get('email')?.hasError('pattern')">Your email pattern is not valid enter valid email pattern!</span>      
+            </div>    
+            </div>
+<div class="form-group">
+            <label class="control-label col-sm-2">Password</label>
+            <div class="col-sm-6">
+                <input type = "password" [(ngModel)] = "register.password" name="password" formControlName = "password" class="form-control" placeholder="Create your Password"/>
+                <!-- <span *ngIf="complexForm.get('password')?.hasError('required')">Password field is required</span> -->
+                <span *ngIf="complexForm.get('password')?.hasError('minlength')">Your password min length is 6 and more then that</span>        
+            </div>    
+            </div> 
+<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-6">
+                    <button  type="submit"  [disabled]="complexForm.invalid" class = "btn btn-primary" (click)="addRegister(complexForm.value)" style="font-size: 15px; font-weight: 700; border-color: rgb(253, 61, 54); text-align: center; color:black; background-color:rgb(120, 178, 245);"  >Add User</button><br/>
+                    <p>Aldready registred? Login here</p>
+                   <button routerLink="/" class = "btn btn-primary" style="font-size: 15px; font-weight: 700;  border-color: rgb(253, 61, 54); text-align: center; color:black; background-color:rgb(120, 178, 245);" >Login</button> 
+                </div>
+            </div>            
+            
+    </form>   
+     
+    </div>
+
+
+
+
+
+
+
+
+
+

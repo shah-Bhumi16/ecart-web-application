@@ -1,0 +1,70 @@
+
+<div class="container" style="background-color: rgb(248, 248, 248);">
+    
+    <h3 style="color: rgb(152, 74, 241);"> Product details!</h3>
+    
+        <button class = "btn btn-primary" (click)="pc.home()">Home</button>
+        <!-- <button class = "btn btn-primary" (click)="pc.login()">Login</button> -->
+        
+        <button class = "btn btn-primary" (click)="pc.cart()">Cart</button>
+        <button class = "btn btn-primary" (click)="pc.logout()">Logout</button>
+        <button class = "btn btn-primary" (click)="pc.getordersnew()">View OrderDetails</button><br/><br>
+
+          <div class="mainbody" style="font-size: 16px; font-weight: 500px; color: black;">
+        <div class="card" *ngIf="item">
+                <div class="name"><h2 style="color: rgb(81, 19, 250);">{{item?.name}}</h2></div>
+                  <div class="description">Description: {{item?.description}}</div>
+                  <div class="price">Price: {{item?.price}}</div>
+                  <div class="quantity">Available Quantity: {{item?.quantity}}</div><br/>
+                    
+                  <div class="image"> <img style="display:block;" width="30%" height="450px" [src]="item?.image"></div><br/>
+                  <p><input class="quantity" name="Quantity" min="1"  [(max)]="max" name="quantity"  [(ngModel)] = "cartItem.quantity" type="number" onkeydown="return false"></p>
+                  <h2><button type="button" (click)="addViewProduct(item.id)" *ngIf="cartItem.quantity>=1" class = "btn btn-primary" style="font-size: 15px; font-weight: 700;  border-color: rgb(253, 61, 54); text-align: center; color:black; background-color:rgb(120, 178, 245);"  >Add to cart</button></h2>
+                </div>
+    </div>
+    <!--<div class="footer">Footer</div>-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    
+  
+ 
